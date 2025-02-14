@@ -42,4 +42,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.viewpager2)
     implementation(libs.fragment)
+    implementation(libs.dotsIndicator)
 }

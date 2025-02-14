@@ -3,13 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <!-- ViewPager2 for Image Scrolling -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/continuebtn"/>
+        android:layout_above="@id/dotsIndicator" />
 
+    <!-- Dots Indicator -->
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/dotsIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:dotsColor="#41C4E7"
+        android:layout_above="@id/continuebtn"
+        android:layout_marginBottom="40dp" />
+
+
+    <!-- Continue Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continuebtn"
         android:layout_width="180dp"

@@ -30,6 +30,10 @@
             android:name=".HomeActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".VoiceTranslator"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
