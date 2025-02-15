@@ -118,6 +118,13 @@
                 android:layout_gravity="right|center"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/ivTranslator"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="right|center"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/translator" />
+                <ImageView
                     android:id="@+id/ivThumb"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
@@ -138,6 +145,7 @@
                     android:layout_height="45dp"
                     android:paddingRight="10dp"
                     android:src="@drawable/speaker" />
+
             </LinearLayout>
 
         </FrameLayout>
