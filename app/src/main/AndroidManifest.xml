@@ -37,6 +37,10 @@
             android:name=".VoiceTranslator"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ConversationTranslator"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

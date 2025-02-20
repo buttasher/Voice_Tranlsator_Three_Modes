@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- RecyclerView for Chat Bubbles -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTranslations"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:scrollbars="vertical" />
+
+    <!-- Bottom Language Selection & Mic Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/button_background2"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true">
+
+        <!-- Mic Button for First Language -->
+        <ImageView
+            android:id="@+id/ivMicFirst"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/mic"
+            android:padding="8dp" />
+
+        <!-- First Language Spinner -->
+        <Spinner
+            android:id="@+id/spinnerFirstLanguage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:background="@drawable/spinner_background"
+            android:layout_marginEnd="25dp"
+            android:padding="8dp" />
+
+
+
+        <!-- Second Language Spinner -->
+        <Spinner
+            android:id="@+id/spinnerSecondLanguage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:background="@drawable/spinner_background"
+            android:padding="8dp" />
+
+        <!-- Mic Button for Second Language -->
+        <ImageView
+            android:id="@+id/ivMicSecond"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/mic"
+            android:padding="8dp" />
+    </LinearLayout>
+</RelativeLayout>

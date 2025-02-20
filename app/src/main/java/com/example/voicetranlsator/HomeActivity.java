@@ -16,8 +16,7 @@ import androidx.cardview.widget.CardView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    CardView cardView;
-    Menu menu;
+    CardView cardView1, cardView3;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home);
 
 
-        cardView =findViewById(R.id.card_voiceTranslator);
+        cardView1 = findViewById(R.id.card_voiceTranslator);
+        cardView3 = findViewById(R.id.card_conversation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,12 +40,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        cardView.setOnClickListener(view -> {
+        cardView1.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, VoiceTranslator.class);
             startActivity(intent);
         });
 
 
+        cardView3.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, ConversationTranslator.class);
+            startActivity(intent);
+        });
     }
 
 
