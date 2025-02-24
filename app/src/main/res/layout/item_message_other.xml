@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bubble_other"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/tvOriginalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:background="#E0E0E0"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvTranslatedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:textSize="15sp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="right|center"
+        android:background="#E0E0E0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            android:id="@+id/ivSpeakTranslation"
+            android:background="#E0E0E0"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:src="@drawable/speaker" />
+        <ImageView
+            android:id="@+id/ivCopy"
+            android:background="#E0E0E0"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/copy" />
+
+        <ImageView
+            android:id="@+id/ivCancel"
+            android:background="#E0E0E0"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/cross" />
+
+    </LinearLayout>
+
+</LinearLayout>

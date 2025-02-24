@@ -1,30 +1,35 @@
 package com.example.voicetranlsator;
 
+
 import android.content.Intent;
+
 import android.graphics.Color;
+
 import android.os.Build;
 import android.os.Bundle;
+
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+
 public class HomeActivity extends AppCompatActivity {
 
-    CardView cardView1, cardView3;
+    CardView cardView1, cardView2, cardView3;
+    private static final int CAMERA_REQUEST = 100;
+    private static final int GALLERY_REQUEST = 200;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-
         cardView1 = findViewById(R.id.card_voiceTranslator);
+        cardView2 = findViewById(R.id.card_cameraTranslate);
         cardView3 = findViewById(R.id.card_conversation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +51,11 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        cardView2.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, CameraTranslator.class);
+            startActivity(intent);
+        });
+
         cardView3.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, ConversationTranslator.class);
             startActivity(intent);
@@ -53,11 +63,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
-
 }

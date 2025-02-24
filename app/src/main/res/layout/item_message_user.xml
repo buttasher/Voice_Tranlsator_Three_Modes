@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bubble_user"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/tvOriginalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvTranslatedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="right|center"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <ImageView
+            android:id="@+id/ivCancel"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/cross" />
+        <ImageView
+            android:id="@+id/ivCopy"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/copy" />
+        <ImageView
+            android:id="@+id/ivSpeakTranslation"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|center"
+            android:src="@drawable/speaker" />
+
+
+    </LinearLayout>
+</LinearLayout>

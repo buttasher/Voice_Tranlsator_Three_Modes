@@ -4,9 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
- * Created by BINARY COMPUTERS on 6/9/2017.
- */
+
 
 public class Methods {
 
