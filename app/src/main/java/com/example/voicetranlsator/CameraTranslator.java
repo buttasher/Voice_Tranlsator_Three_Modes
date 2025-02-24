@@ -1,9 +1,10 @@
 package com.example.voicetranlsator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ClipboardManager;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,7 +15,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.util.SparseArray;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,8 +33,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 import org.json.JSONObject;
 
@@ -50,8 +52,8 @@ public class CameraTranslator extends AppCompatActivity {
     TextView translationView, textView;
     TextToSpeech textToSpeech;
     private static final int REQ_CODE_SPEECH_INPUT = 100;
-    private static final int REQUEST_IMAGE_CAPTURE = 101;
-    private static final int REQUEST_IMAGE_PICK = 102;
+    private static final int REQ_CODE_CAMERA = 101;
+    private static final int REQ_CODE_GALLERY = 102;
 
     private static final String TRANSLATE_API_URL = "https://api.mymemory.translated.net/get?q=%s&langpair=%s|%s";
 
@@ -60,7 +62,6 @@ public class CameraTranslator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_translator);
 
-        // Initialize UI Elements
         spinnerFirst = findViewById(R.id.spinnerFirstLanguage);
         spinnerSecond = findViewById(R.id.spinnerSecondLanguage);
         etWord = findViewById(R.id.etWord);
@@ -78,20 +79,17 @@ public class CameraTranslator extends AppCompatActivity {
 
         etResult.setEnabled(false);
 
-        // Setup Spinner Adapter
         String[] languages = getResources().getStringArray(R.array.languages);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages);
         spinnerFirst.setAdapter(adapter);
         spinnerSecond.setAdapter(adapter);
 
-        // Initialize Text-to-Speech
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 textToSpeech.setLanguage(Locale.getDefault());
             }
         });
 
-        // Set Status Bar Color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -103,7 +101,6 @@ public class CameraTranslator extends AppCompatActivity {
             }
         }
 
-        // Handle Language Selection
         spinnerFirst.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -124,7 +121,6 @@ public class CameraTranslator extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        // Copy Translation
         ivCopy.setOnClickListener(view -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("Copied Text", etResult.getText().toString());
@@ -132,23 +128,15 @@ public class CameraTranslator extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Translation copied", Toast.LENGTH_SHORT).show();
         });
 
-        // Camera Button
-        ivCamera.setOnClickListener(view -> {
-            Intent pickIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickIntent.setType("image/*");
-            startActivityForResult(pickIntent, REQUEST_IMAGE_PICK);
-        });
+        ivCamera.setOnClickListener(view -> showImageSourceDialog());
 
-        // Cancel Text
         ivCancel.setOnClickListener(view -> {
             etWord.setText("");
             etResult.setText("");
         });
 
-        // Mic Input
         ivMic.setOnClickListener(view -> promptSpeechInput());
 
-        // Speak Text
         ivSpeakText.setOnClickListener(view -> {
             String text = etWord.getText().toString().trim();
             if (text.isEmpty()) {
@@ -158,7 +146,6 @@ public class CameraTranslator extends AppCompatActivity {
             }
         });
 
-        // Speak Translation
         ivSpeakTranslation.setOnClickListener(view -> {
             String translatedText = etResult.getText().toString().trim();
             if (translatedText.isEmpty()) {
@@ -168,6 +155,7 @@ public class CameraTranslator extends AppCompatActivity {
 
             String selectedLanguage = spinnerSecond.getSelectedItem().toString();
             Locale languageLocale = getLocaleFromLanguage(selectedLanguage);
+
             int result = textToSpeech.setLanguage(languageLocale);
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
@@ -177,47 +165,55 @@ public class CameraTranslator extends AppCompatActivity {
             }
         });
 
-        // Translate Button
         ivTranslator.setOnClickListener(view -> translateText());
     }
 
+    private void showImageSourceDialog() {
+        String[] options = {"Camera", "Gallery"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Image Source");
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, REQ_CODE_CAMERA);
+            } else if (which == 1) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, REQ_CODE_GALLERY);
+            }
+        });
+        builder.show();
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_IMAGE_PICK && resultCode == Activity.RESULT_OK && data != null) {
-            Uri imageUri = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                extractTextFromImage(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && data != null) {
+        if (requestCode == REQ_CODE_SPEECH_INPUT && resultCode == RESULT_OK && data != null) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             if (result != null && !result.isEmpty()) {
                 etWord.setText(result.get(0));
             }
+        } else if ((requestCode == REQ_CODE_CAMERA || requestCode == REQ_CODE_GALLERY) && resultCode == RESULT_OK) {
+            try {
+                Bitmap imageBitmap;
+                if (requestCode == REQ_CODE_CAMERA && data != null) {
+                    imageBitmap = (Bitmap) data.getExtras().get("data");
+                } else {
+                    Uri imageUri = data.getData();
+                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                }
+
+                InputImage inputImage = InputImage.fromBitmap(imageBitmap, 0);
+                TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+                recognizer.process(inputImage)
+                        .addOnSuccessListener(visionText -> etWord.setText(visionText.getText()))
+                        .addOnFailureListener(e -> Toast.makeText(this, "Failed to recognize text", Toast.LENGTH_SHORT).show());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    private void extractTextFromImage(Bitmap bitmap) {
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-        if (!textRecognizer.isOperational()) {
-            Toast.makeText(this, "Text recognizer not available", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-        SparseArray<com.google.android.gms.vision.text.TextBlock> textBlocks = textRecognizer.detect(frame);
-
-        StringBuilder extractedText = new StringBuilder();
-        for (int i = 0; i < textBlocks.size(); i++) {
-            com.google.android.gms.vision.text.TextBlock textBlock = textBlocks.valueAt(i);
-            extractedText.append(textBlock.getValue()).append(" ");
-        }
-
-        etWord.setText(extractedText.toString().trim());
     }
 
     private void promptSpeechInput() {
