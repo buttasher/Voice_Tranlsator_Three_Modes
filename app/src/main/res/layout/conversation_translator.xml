@@ -24,7 +24,7 @@
         android:orientation="horizontal"
         android:background="@drawable/button_background2"
         android:padding="10dp"
-        android:layout_alignParentBottom="true">
+        android:layout_above="@+id/adView">
 
         <!-- Mic Button for First Language -->
         <ImageView
@@ -61,4 +61,13 @@
             android:src="@drawable/mic"
             android:padding="8dp" />
     </LinearLayout>
+    <!-- Google AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="@string/banner_ad_id"
+        android:layout_alignParentBottom="true" />
+
 </RelativeLayout>

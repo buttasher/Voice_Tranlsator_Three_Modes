@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.voicetranlsator"
+    namespace = "com.UniverTranslatevoiceTranslator.UniverTranslate"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.voicetranlsator"
+        applicationId = "com.UniverTranslatevoiceTranslator.UniverTranslate"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,4 +49,5 @@ dependencies {
     implementation(libs.viewpager2)
     implementation(libs.fragment)
     implementation(libs.dotsIndicator)
+    implementation(libs.play.services.ads)
 }

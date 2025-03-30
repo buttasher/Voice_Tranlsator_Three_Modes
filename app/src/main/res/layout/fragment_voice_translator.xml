@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.example.fragments.VoiceTranslator">
+    tools:context="com.UniverTranslatevoiceTranslator.fragments.VoiceTranslator">
 
     <TextView
         android:layout_width="wrap_content"
