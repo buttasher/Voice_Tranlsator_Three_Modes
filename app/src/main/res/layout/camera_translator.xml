@@ -79,7 +79,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Text"
-                android:textColor="#807E7E"
+                android:textColor="#4A4A4A"
                 android:textSize="18sp" />
             <EditText
                 android:id="@+id/etWord"
@@ -88,6 +88,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@null"
                 android:gravity="top|left"
+                android:hint="Enter a word"
                 android:padding="10dp" />
 
 
@@ -171,7 +172,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:text="Translation"
-                android:textColor="#807E7E"
+                android:textColor="#4A4A4A"
                 android:textSize="18sp" />
 
             <EditText
@@ -182,6 +183,7 @@
                 android:clickable="false"
                 android:layout_marginTop="30dp"
                 android:gravity="top|left"
+                android:hint="Result"
                 android:textColor="@color/black"
                 android:padding="10dp" />
 

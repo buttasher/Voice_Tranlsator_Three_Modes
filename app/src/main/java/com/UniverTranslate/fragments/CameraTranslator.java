@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator.fragments;
+package com.UniverTranslate.fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.UniverTranslatevoiceTranslator.UniverTranslate.R;
+
+import com.UniverTranslateTranslationtools.R;
 
 
 public class CameraTranslator extends Fragment {

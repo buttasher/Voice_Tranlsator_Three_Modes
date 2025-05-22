@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.UniverTranslatevoiceTranslator.UniverTranslate"
+    namespace = "com.UniverTranslateTranslationtools"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.UniverTranslatevoiceTranslator.UniverTranslate"
+        applicationId = "com.UniverTranslateTranslationtools"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

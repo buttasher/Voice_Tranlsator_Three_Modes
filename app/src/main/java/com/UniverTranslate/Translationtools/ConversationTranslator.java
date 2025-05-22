@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator.UniverTranslate;
+package com.UniverTranslate.Translationtools;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -20,11 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.UniverTranslate.Translationtools.ConversationTranslator;
+import com.UniverTranslateTranslationtools.R;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.UniverTranslatevoiceTranslator.MessageAdapter;
+import com.UniverTranslate.MessageAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;

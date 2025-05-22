@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator.UniverTranslate;
+package com.UniverTranslate.Translationtools;
 
 import org.junit.Test;
 

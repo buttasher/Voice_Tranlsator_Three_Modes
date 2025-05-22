@@ -1,13 +1,13 @@
-package com.UniverTranslatevoiceTranslator;
+package com.UniverTranslate;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.UniverTranslatevoiceTranslator.fragments.CameraTranslator;
-import com.UniverTranslatevoiceTranslator.fragments.ConversationTranslator;
-import com.UniverTranslatevoiceTranslator.fragments.VoiceTranslator;
+import com.UniverTranslate.fragments.CameraTranslator;
+import com.UniverTranslate.fragments.ConversationTranslator;
+import com.UniverTranslate.fragments.VoiceTranslator;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {

@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator.UniverTranslate;
+package com.UniverTranslate.Translationtools;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.UniverTranslatevoiceTranslator.ViewPagerAdapter;
+import com.UniverTranslate.ViewPagerAdapter;
+import com.UniverTranslate.Translationtools.MainActivity;
+import com.UniverTranslateTranslationtools.R;
 import com.google.android.material.button.MaterialButton;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 

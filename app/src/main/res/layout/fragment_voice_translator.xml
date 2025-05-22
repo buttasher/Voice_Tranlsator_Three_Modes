@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.UniverTranslatevoiceTranslator.fragments.VoiceTranslator">
+    tools:context="com.UniverTranslate.fragments.VoiceTranslator">
 
     <TextView
         android:layout_width="wrap_content"

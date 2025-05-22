@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator;
+package com.UniverTranslate;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.UniverTranslatevoiceTranslator.UniverTranslate.Message;
-import com.UniverTranslatevoiceTranslator.UniverTranslate.R;
+import com.UniverTranslate.Translationtools.Message;
+import com.UniverTranslate.ViewPagerAdapter;
+import com.UniverTranslateTranslationtools.R;
+
 
 import java.util.ArrayList;
 import java.util.Locale;

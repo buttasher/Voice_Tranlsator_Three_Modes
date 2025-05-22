@@ -1,4 +1,4 @@
-package com.UniverTranslatevoiceTranslator.UniverTranslate;
+package com.UniverTranslate.Translationtools;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import com.UniverTranslate.Translationtools.SplashScreen;
+import com.UniverTranslateTranslationtools.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

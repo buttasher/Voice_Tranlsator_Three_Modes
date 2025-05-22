@@ -22,7 +22,7 @@
         android:theme="@style/Theme.VoiceTranlsator"
         tools:targetApi="31">
         <activity
-            android:name=".SplashScreen"
+            android:name="com.UniverTranslate.Translationtools.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,24 +31,24 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.UniverTranslate.Translationtools.MainActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".HomeActivity"
+            android:name="com.UniverTranslate.Translationtools.HomeActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".VoiceTranslator"
+            android:name="com.UniverTranslate.Translationtools.VoiceTranslator"
             android:exported="true">
         </activity>
         <activity
-            android:name=".ConversationTranslator"
+            android:name="com.UniverTranslate.Translationtools.ConversationTranslator"
             android:exported="true">
         </activity>
         <activity
-            android:name=".CameraTranslator"
+            android:name="com.UniverTranslate.Translationtools.CameraTranslator"
             android:exported="true">
         </activity>
         <meta-data
